@@ -1,2 +1,2 @@
-# squal-illustration
+# Squal Illustration
 Squal Illustration Website
