@@ -1,23 +1,25 @@
 <template>
   <section class="contact">
-    <div class="contact_title">
-      <h3>Contact</h3>
+    <div class="title">
+      <h1>Contact</h1>
     </div>
-    <div class="contact_content">
-      <form id="contact_formulaire" class="form" @submit.prevent="send">
+    <div class="content">
+      <form id="formulaire" class="form" @submit.prevent="send">
         <div class="contact_status">
-          <transition name="contact_fade">
-            <div v-if="success" class="success">Message envoyé</div>
-            <div v-if="!success" class="error">{{error}}</div>
+          <transition name="fade">
+            <div v-if="receive">
+              <div v-if="success" class="success">Message envoyé</div>
+              <div v-else class="error">{{error}}</div>
+            </div>
           </transition>
         </div>
         <div class="form-group">
           <label class="label" for="name">Nom</label>
-          <input class="input" type="text" name="name" placeholder="Nom" id="name" value="" v-model="name">
+          <input class="input" type="text" name="name" placeholder="Nom" id="name" v-model="name">
         </div>
         <div class="form-group">
           <label class="label" for="email">Email</label>
-          <input class="input" type="email" name="email" id="email" placeholder="Email" value="" v-model="email">
+          <input class="input" type="email" name="email" id="email" placeholder="Email" v-model="email">
         </div>
         <div class="form-group">
           <label class="label" for="text">Message</label>
@@ -46,6 +48,7 @@ const store = useStore()
 const name = ref('')
 const email = ref('')
 const message = ref('')
+const receive = ref(false)
 const success = ref(false)
 const sending = ref(false)
 const error = ref('')
@@ -53,8 +56,16 @@ const recaptcha = ref('')
 
 const onVerify = (response: string) => { recaptcha.value = response }
 const onExpired = () => { recaptcha.value = '' }
-const response = function () {
-  console.log(arguments)
+const response = function (res: { success: boolean, error: string }) {
+  success.value = res.success
+  error.value = res.error
+  receive.value = true
+  sending.value = false
+  if (success.value) {
+    name.value = ''
+    email.value = ''
+    message.value = ''
+  }
 }
 const send = () => {
   sending.value = true

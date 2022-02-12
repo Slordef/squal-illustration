@@ -1,19 +1,23 @@
 <template>
-  <div class="home">
+  <section class="home">
     <div class="image">
-      <PictureFrame :image="image" />
+      <PictureFrame :id="imageID" />
     </div>
     <div class="text">
-      <h3>Accueil</h3>
+      <h1>Accueil</h1>
       <div v-html="text"></div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
-const text = `<p>Illustration - Graphisme - Animation</p>
-<p>Freelance basée en Suisse</p>
-`
+import PictureFrame from '@/components/PictureFrame.vue'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+const text = computed(() => store.getters.getSettings?.homeText || '<p>Bienvenue</p>')
+const imageID = computed(() => store.getters.getSettings?.homeImage)
 </script>
 
 <style scoped></style>

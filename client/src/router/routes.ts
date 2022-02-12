@@ -10,5 +10,5 @@ export const routes: Array<RouteRecordRaw> = [
   { path: '/gallery/:id', name: 'Gallery', component: GalleryView, props: true },
   { path: '/projects', name: 'Projects', component: ProjectsView },
   { path: '/contact', name: 'Contact', component: ContactView },
-  { path: '*', name: '404', component: Error404View }
+  { path: '/.*', name: '404', component: Error404View }
 ]
