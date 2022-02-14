@@ -6,7 +6,6 @@ export interface State {
   settings?: Settings
   categories?: Category[]
   images?: Image[]
-  galleryChoices?: []
 }
 
 export const state: State = {}
