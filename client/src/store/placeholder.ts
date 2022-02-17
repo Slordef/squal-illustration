@@ -1,6 +1,6 @@
-import { Image } from '@/interfaces/image'
-import { Category } from '@/interfaces/category'
-import { Settings } from '@/interfaces/settings'
+import { Image } from '../intefaces/image'
+import { Category } from '../intefaces/category'
+import { Settings } from '../intefaces/settings'
 
 export const placeholderImages: Image[] = [
   { id: '1', name: 'City', description: 'City description', link: 'city.jpg', category: 0 },

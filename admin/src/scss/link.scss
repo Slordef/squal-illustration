@@ -1,0 +1,10 @@
+a {
+  color: dodgerblue;
+  text-decoration: none;
+  &:hover {
+    color: hsl(210, 100%, 40%);
+  }
+  &:active {
+    color: hsl(210, 100%, 60%);
+  }
+}

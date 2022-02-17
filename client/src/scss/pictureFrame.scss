@@ -86,10 +86,10 @@
   transition: 1s;
 }
 
-.pictureFrame_slide-enter,.pictureFrame_slide-leave-to{
+.pictureFrame_slide-enter-from,.pictureFrame_slide-leave-to{
   opacity: 0;
 }
-.pictureFrame_slide-enter {
+.pictureFrame_slide-enter-from {
   transform: translate(3%,3%);
 }
 .pictureFrame_slide-leave-to {

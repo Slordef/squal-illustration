@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import { computed, defineProps, ref } from 'vue'
 import { emitter } from '@/store/emitter'
-import { Image } from '@/interfaces/image'
+import { Image } from '../intefaces/image'
 import { useStore } from 'vuex'
 
 const store = useStore()

@@ -1,4 +1,4 @@
-import { ContactMessage } from '@/interfaces/contactMessage'
+import { ContactMessage } from '../intefaces/contactMessage'
 import { ActionTree } from 'vuex'
 import { State } from '@/store/state'
 import { api } from '@/store/api'

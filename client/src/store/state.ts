@@ -1,6 +1,6 @@
-import { Image } from '@/interfaces/image'
-import { Settings } from '@/interfaces/settings'
-import { Category } from '@/interfaces/category'
+import { Image } from '@/intefaces/image'
+import { Settings } from '@/intefaces/settings'
+import { Category } from '@/intefaces/category'
 
 export interface State {
   settings?: Settings

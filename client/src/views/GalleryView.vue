@@ -11,7 +11,7 @@
 import PictureFrame from '@/components/PictureFrame.vue'
 import { computed, defineProps } from 'vue'
 import { useStore } from 'vuex'
-import { Category } from '@/interfaces/category'
+import { Category } from '../intefaces/category'
 
 const store = useStore()
 const props = defineProps<{

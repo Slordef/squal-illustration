@@ -1,8 +1,8 @@
-import { Server } from '../lib/Server'
-import { Application } from '../lib/Application'
-import { Router } from '../lib/Router'
+import { Server } from '../src/lib/Server'
+import { Application } from '../src/lib/Application'
+import { Router } from '../src/lib/Router'
 import axios from 'axios'
-import { ApiRoute } from '../interfaces/ApiRoute'
+import { ApiRoute } from '../src/interfaces/ApiRoute'
 
 const fakeRoutes: ApiRoute[] = [
     ['GET', '/', async () => { return 'Hello Jest !' }],
@@ -13,7 +13,7 @@ describe('Application', () => {
     describe('Construct application handlers', () => {
         it('Base api route handle', (done) => {
             const application = new Application(new Server(3030))
-            application.setRouter(new Router(fakeRoutes, []))
+            application.setRouter(new Router(fakeRoutes))
             application.run().then(() => {
                 axios.get('http://localhost:3030/').then(response => {
                     expect(response.data).toContain('Hello Jest !')
@@ -24,7 +24,7 @@ describe('Application', () => {
         })
         it('Test api error handle', (done) => {
             const application = new Application(new Server(3031))
-            application.setRouter(new Router(fakeRoutes, []))
+            application.setRouter(new Router(fakeRoutes))
             application.run().then(() => {
                 axios.get('http://localhost:3031/error').catch(err => {
                     expect(err.response.status).toBe(500)
