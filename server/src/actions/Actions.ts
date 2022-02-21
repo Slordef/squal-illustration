@@ -1,5 +1,5 @@
-import { getVueClient } from './getVueClient'
-import { getVueAdmin } from './getVueAdmin'
+import { returnVueClient } from './returnVueClient'
+import { returnVueAdmin } from './returnVueAdmin'
 import { getCategories } from './getCategories'
 import { putCategory } from './putCategory'
 import { postCategory } from './postCategory'
@@ -11,8 +11,8 @@ import { deleteImage } from './deleteImage'
 import { getSettings } from './getSettings'
 
 export const Actions = {
-    getVueClient,
-    getVueAdmin,
+    returnVueClient,
+    returnVueAdmin,
 
 
     getCategories,

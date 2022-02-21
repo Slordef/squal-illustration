@@ -5,8 +5,8 @@ import { routeSettings } from './routeSettings'
 import { routeImages } from './routeImages'
 
 export const apiRoutes: ApiRoute[] = [
-    ['GET', '/', Actions.getVueClient],
-    ['GET', '/admin', Actions.getVueAdmin],
+    ['GET', '/', Actions.returnVueClient],
+    ['GET', '/admin', Actions.returnVueAdmin],
     ...routeCategories,
     ...routeSettings,
     ...routeImages
