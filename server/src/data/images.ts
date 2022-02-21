@@ -1,10 +1,10 @@
 import { getData, setData } from '../lib/Data'
 import { Image } from '../interfaces/image'
 
-export function getImages () {
+export function getDataImages () {
     return getData<Image[]>('images') || []
 }
 
-export function setImages (data: Image[]) {
+export function setDataImages (data: Image[]) {
     setData('images', data)
 }

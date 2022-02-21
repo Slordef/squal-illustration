@@ -1,8 +1,8 @@
 import { ApiRequest } from '../interfaces/ApiRoute'
-import { getImages, setImages } from '../data/images'
+import { getDataImages, setDataImages } from '../data/images'
 
 export async function putImage(request: ApiRequest) {
-    const images = getImages()
+    const images = getDataImages()
     const image = request.body.image
     if (image && image.id){
         const cat = images.find(c => c.id == image.id)
@@ -10,7 +10,7 @@ export async function putImage(request: ApiRequest) {
             cat.name = image.name
             cat.description = image.description
             cat.link = image.link
-            setImages(images)
+            setDataImages(images)
         }
     }
     return images

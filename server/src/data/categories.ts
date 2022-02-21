@@ -1,10 +1,10 @@
 import { getData, setData } from '../lib/Data'
 import { Category } from '../interfaces/category'
 
-export function getCategories () {
+export function getDataCategories () {
     return getData<Category[]>('categories') || []
 }
 
-export function setCategories (data: Category[]) {
+export function setDataCategories (data: Category[]) {
     setData('categories', data)
 }

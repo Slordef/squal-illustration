@@ -1,4 +1,4 @@
 export interface Settings {
-  homeText: string,
-  homeImage: string
+  homeText?: string,
+  homeImage?: string
 }

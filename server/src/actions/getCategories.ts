@@ -1,6 +1,5 @@
-import { getData } from '../lib/Data'
-import { Category } from '../interfaces/category'
+import { getDataCategories } from '../data/categories'
 
 export async function getCategories() {
-    return getData<Category[]>('categories')
+    return getDataCategories()
 }
