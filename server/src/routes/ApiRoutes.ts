@@ -1,10 +1,10 @@
 import { ApiRoute } from '../interfaces/ApiRoute'
 import { Actions } from '../actions/Actions'
+import { routeCategories } from './routeCategories'
 
 export const apiRoutes: ApiRoute[] = [
-    ['GET', '/', Actions.returnVueClient],
-    ['GET', '/admin', Actions.returnVueAdmin],
-    ['GET', '/api/settings', Actions.returnSettings],
-    ['GET', '/api/categories', Actions.returnCategories],
-    ['GET', '/api/images', Actions.returnImages]
+    ['GET', '/', Actions.getVueClient],
+    ['GET', '/admin', Actions.getVueAdmin],
+
+    ...routeCategories
 ]

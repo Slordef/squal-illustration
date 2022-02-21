@@ -1,13 +1,13 @@
-import { returnVueClient } from './returnVueClient'
-import { returnVueAdmin } from './returnVueAdmin'
-import { returnSettings } from './returnSettings'
-import { returnCategories } from './returnCategories'
-import { returnImages } from './returnImages'
+import { getVueClient } from './getVueClient'
+import { getVueAdmin } from './getVueAdmin'
+import { getSettings } from './getSettings'
+import { getCategories } from './getCategories'
+import { getImages } from './getImages'
 
 export const Actions = {
-    returnVueClient,
-    returnVueAdmin,
-    returnSettings,
-    returnCategories,
-    returnImages,
+    getVueClient,
+    getVueAdmin,
+    getSettings,
+    getCategories,
+    getImages,
 }
