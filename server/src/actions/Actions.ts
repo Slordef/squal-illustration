@@ -1,5 +1,3 @@
-import { socketLogin } from './socketLogin'
-import { socketToken } from './socketToken'
 import { returnVueClient } from './returnVueClient'
 import { returnVueAdmin } from './returnVueAdmin'
 import { returnSettings } from './returnSettings'
@@ -12,6 +10,4 @@ export const Actions = {
     returnSettings,
     returnCategories,
     returnImages,
-    socketLogin,
-    socketToken
 }
