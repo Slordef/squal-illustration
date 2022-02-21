@@ -1,5 +1,5 @@
-import { getDataCategories, setDataCategories } from '../data/categories'
-import { ApiRequest } from '../interfaces/ApiRoute'
+import { getDataCategories, setDataCategories } from '../../data/categories'
+import { ApiRequest } from '../../interfaces/ApiRoute'
 
 export async function putCategory(request: ApiRequest) {
     const categories = getDataCategories()

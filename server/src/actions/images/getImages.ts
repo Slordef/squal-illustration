@@ -1,4 +1,4 @@
-import { getDataImages } from '../data/images'
+import { getDataImages } from '../../data/images'
 
 export async function getImages() {
     return getDataImages()

@@ -1,11 +1,14 @@
-import fastify, { FastifyInstance, RouteOptions } from 'fastify'
+import fastify, { FastifyInstance } from 'fastify'
 import fastifyCors from 'fastify-cors'
 import fastifyStatic from 'fastify-static'
 import * as path from 'path'
 import * as process from 'process'
+import fastifyUpload from 'fastify-file-upload'
+import { Raw, Route } from '../interfaces/ApiRoute'
+import * as http from 'http'
 
 export class Server {
-    private app: FastifyInstance
+    private app: FastifyInstance<http.Server, Raw>
 
     constructor(private port: number) {
         this.app = fastify()
@@ -24,9 +27,12 @@ export class Server {
             prefix: '/web/',
             decorateReply: false
         })
+        this.app.register(fastifyUpload, {
+            limits: { fileSize: 5 * 1024 * 1024 }
+        })
     }
 
-    addApiRoute (route: RouteOptions) {
+    addApiRoute (route: Route) {
         this.app.route(route)
     }
 

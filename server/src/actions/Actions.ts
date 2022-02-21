@@ -1,14 +1,14 @@
 import { returnVueClient } from './returnVueClient'
 import { returnVueAdmin } from './returnVueAdmin'
-import { getCategories } from './getCategories'
-import { putCategory } from './putCategory'
-import { postCategory } from './postCategory'
-import { deleteCategory } from './deleteCategory'
-import { getImages } from './getImages'
-import { postImage } from './postImage'
-import { putImage } from './putImage'
-import { deleteImage } from './deleteImage'
-import { getSettings } from './getSettings'
+import { getCategories } from './categories/getCategories'
+import { putCategory } from './categories/putCategory'
+import { postCategory } from './categories/postCategory'
+import { deleteCategory } from './categories/deleteCategory'
+import { getImages } from './images/getImages'
+import { postImage } from './images/postImage'
+import { putImage } from './images/putImage'
+import { deleteImage } from './images/deleteImage'
+import { getSettings } from './settings/getSettings'
 
 export const Actions = {
     returnVueClient,

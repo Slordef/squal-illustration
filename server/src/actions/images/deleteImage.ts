@@ -1,6 +1,6 @@
-import { ApiRequest } from '../interfaces/ApiRoute'
+import { ApiRequest } from '../../interfaces/ApiRoute'
 import { FastifyReply } from 'fastify'
-import { getDataImages, setDataImages } from '../data/images'
+import { getDataImages, setDataImages } from '../../data/images'
 
 export async function deleteImage(request: ApiRequest, reply: FastifyReply) {
     const id = request.body.id

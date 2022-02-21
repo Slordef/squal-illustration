@@ -1,5 +1,5 @@
-import { ApiRequest } from '../interfaces/ApiRoute'
-import { getDataImages, setDataImages } from '../data/images'
+import { ApiRequest } from '../../interfaces/ApiRoute'
+import { getDataImages, setDataImages } from '../../data/images'
 
 export async function putImage(request: ApiRequest) {
     const images = getDataImages()

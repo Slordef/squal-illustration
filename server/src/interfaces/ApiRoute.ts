@@ -3,13 +3,13 @@ import {
     FastifyRequest,
     HTTPMethods,
     RawReplyDefaultExpression,
-    RawRequestDefaultExpression,
     RawServerDefault,
-    RouteHandlerMethod
+    RouteHandlerMethod, RouteOptions
 } from 'fastify'
 import { Category } from './category'
 import { Image } from './image'
 import { Settings } from './settings'
+import { IncomingMessage } from 'http'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'PATCH' | 'OPTIONS' | HTTPMethods[]
 type URL = string
@@ -21,7 +21,9 @@ type BodySetup = {
         settings?: Settings
     }
 }
-type Handler = RouteHandlerMethod<RawServerDefault, RawRequestDefaultExpression, RawReplyDefaultExpression, BodySetup, ContextConfigDefault>
+// eslint-disable-next-line
+export type Raw = { files: any } & IncomingMessage
+type Handler = RouteHandlerMethod<RawServerDefault, Raw, RawReplyDefaultExpression, BodySetup, ContextConfigDefault>
 export type ApiRoute = [Method, URL, Handler]
-
-export type ApiRequest = FastifyRequest<BodySetup>
+export type Route = RouteOptions<RawServerDefault, Raw, RawReplyDefaultExpression, BodySetup, ContextConfigDefault>
+export type ApiRequest = FastifyRequest<BodySetup, RawServerDefault, Raw>

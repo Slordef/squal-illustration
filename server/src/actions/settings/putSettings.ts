@@ -1,5 +1,5 @@
-import { ApiRequest } from '../interfaces/ApiRoute'
-import { getDataSettings } from '../data/settings'
+import { ApiRequest } from '../../interfaces/ApiRoute'
+import { getDataSettings } from '../../data/settings'
 
 export async function putSettings(request: ApiRequest) {
     const settings = getDataSettings()

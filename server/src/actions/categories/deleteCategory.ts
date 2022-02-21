@@ -1,6 +1,6 @@
-import { ApiRequest } from '../interfaces/ApiRoute'
+import { ApiRequest } from '../../interfaces/ApiRoute'
 import { FastifyReply } from 'fastify'
-import { getDataCategories, setDataCategories } from '../data/categories'
+import { getDataCategories, setDataCategories } from '../../data/categories'
 
 export async function deleteCategory(request: ApiRequest, reply: FastifyReply) {
     const id = request.body.id
