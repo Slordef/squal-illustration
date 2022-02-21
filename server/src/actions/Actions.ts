@@ -3,11 +3,21 @@ import { getVueAdmin } from './getVueAdmin'
 import { getSettings } from './getSettings'
 import { getCategories } from './getCategories'
 import { getImages } from './getImages'
+import { putCategory } from './putCategory'
+import { postCategory } from './postCategory'
+import { deleteCategory } from './deleteCategory'
 
 export const Actions = {
     getVueClient,
     getVueAdmin,
-    getSettings,
+
+
     getCategories,
+    postCategory,
+    putCategory,
+    deleteCategory,
+
     getImages,
+
+    getSettings,
 }

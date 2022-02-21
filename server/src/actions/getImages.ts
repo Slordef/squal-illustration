@@ -1,6 +1,5 @@
-import { getData } from '../lib/Data'
-import { Image } from '../interfaces/image'
+import { getImages } from '../data/images'
 
 export async function getImages() {
-    return getData<Image[]>('images')
+    return getImages()
 }
