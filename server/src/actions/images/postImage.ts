@@ -1,17 +1,22 @@
 import { ApiRequest } from '../../interfaces/ApiRoute'
-import { setDataImages, getDataImages } from '../../data/images'
+import { getDataImages, setDataImages } from '../../data/images'
+import { saveFile } from '../../files/file'
+import { randomImageID } from '../../utils/randomImageID'
 
 export async function postImage(request: ApiRequest) {
-    const files = request.raw.files
-    console.log(files)
+    const files = await request.files()
     const images = getDataImages()
-    const image = request.body.image
-    if (image && image.id){
-        const cat = images.find(c => c.name == image.name)
-        if (!cat) {
-            images.push(image)
-            setDataImages(images)
-        }
+    for await (const file of files) {
+        console.log(file)
+        const result = await saveFile(file)
+        images.push({
+            id: randomImageID(images),
+            name: result.name,
+            description: '',
+            link: result.name,
+            category: 0
+        })
     }
+    setDataImages(images)
     return images
 }

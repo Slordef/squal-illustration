@@ -3,9 +3,9 @@ import fastifyCors from 'fastify-cors'
 import fastifyStatic from 'fastify-static'
 import * as path from 'path'
 import * as process from 'process'
-import fastifyUpload from 'fastify-file-upload'
 import { Raw, Route } from '../interfaces/ApiRoute'
 import * as http from 'http'
+import fastifyMultipart from 'fastify-multipart'
 
 export class Server {
     private app: FastifyInstance<http.Server, Raw>
@@ -27,7 +27,7 @@ export class Server {
             prefix: '/web/',
             decorateReply: false
         })
-        this.app.register(fastifyUpload, {
+        this.app.register(fastifyMultipart, {
             limits: { fileSize: 5 * 1024 * 1024 }
         })
     }
