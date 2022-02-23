@@ -9,5 +9,5 @@ export function randomImageID(images: Image[]) {
             id += chars[Math.floor(Math.random() * chars.length)]
         }
     } while (images.find(i => i.id === id))
-    return ''
+    return id
 }

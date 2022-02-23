@@ -5,6 +5,17 @@ module.exports = defineConfig({
   indexPath: 'admin.html',
   devServer: {
     port: 8081,
-    proxy: {}
+    proxy: {
+      '^/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        secure: false
+      },
+      '^/web': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   }
 })

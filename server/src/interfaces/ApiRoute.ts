@@ -15,10 +15,12 @@ type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'PATCH' | 'OPTIONS' |
 type URL = string
 type BodySetup = {
     Body: {
-        id?: string
         category?: Category,
         image?: Image,
         settings?: Settings
+    },
+    Querystring: {
+        id?: string
     }
 }
 // eslint-disable-next-line

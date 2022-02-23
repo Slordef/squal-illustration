@@ -12,7 +12,7 @@ export const routes: Array<RouteRecordRaw> = [
     name: 'Connection',
     component: ConnectionView,
     beforeEnter: (from, to, next) => {
-      if (store.state.token === undefined) next()
+      if (store.state.token === undefined) return next()
       next({ name: 'Home' })
     }
   },
@@ -21,7 +21,7 @@ export const routes: Array<RouteRecordRaw> = [
     name: 'Dashboard',
     component: DashboardView,
     beforeEnter: (from, to, next) => {
-      if (store.state.token !== undefined) next()
+      if (store.state.token !== undefined) return next()
       next({ name: 'Connection' })
     },
     children: [

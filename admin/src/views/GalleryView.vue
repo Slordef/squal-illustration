@@ -1,6 +1,6 @@
 <template>
   <section class="gallery">
-    <div>
+    <div class="gallery_categories">
       <div>
         <h3>Image de page d'accueil</h3>
       </div>
@@ -19,19 +19,14 @@
 
 <script setup lang="ts">
 import CategoryElem from '@/components/CategoryElem.vue'
-
 import { Category } from '@/intefaces/category'
 import GallerySelector from '@/components/GallerySelector.vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useStore } from 'vuex'
 
-const categories = ref<Category[]>([
-  {
-    index: '0',
-    name: 'Galerie',
-    images: ['1', '2']
-  }
-])
+const store = useStore()
 
+const categories = computed<Category[]>(() => store.getters.getCategories || [])
 const titleNewGallery = ref('')
 const existsGallery = (name: string) => {
   return !!categories.value.find(c => c.name.toLocaleLowerCase() === name.toLocaleLowerCase())
@@ -57,6 +52,7 @@ const fnNewGallery = () => {
     alert(e.message)
   }
 }
+store.dispatch('getAllCategories')
 </script>
 
 <style scoped></style>

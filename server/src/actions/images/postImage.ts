@@ -4,16 +4,16 @@ import { saveFile } from '../../files/file'
 import { randomImageID } from '../../utils/randomImageID'
 
 export async function postImage(request: ApiRequest) {
+    console.log(await request.files())
     const files = await request.files()
     const images = getDataImages()
     for await (const file of files) {
-        console.log(file)
-        const result = await saveFile(file)
+        const name = await saveFile(file)
         images.push({
             id: randomImageID(images),
-            name: result.name,
+            name,
             description: '',
-            link: result.name,
+            link: name,
             category: 0
         })
     }
