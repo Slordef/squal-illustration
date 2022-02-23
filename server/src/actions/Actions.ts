@@ -9,11 +9,17 @@ import { postImage } from './images/postImage'
 import { putImage } from './images/putImage'
 import { deleteImage } from './images/deleteImage'
 import { getSettings } from './settings/getSettings'
+import { returnConnection } from './connection/returnConnection'
+import { postAdmin } from './connection/postAdmin'
+import { putAdmin } from './connection/putAdmin'
 
 export const Actions = {
     returnVueClient,
     returnVueAdmin,
 
+    returnConnection,
+    postAdmin,
+    putAdmin,
 
     getCategories,
     postCategory,

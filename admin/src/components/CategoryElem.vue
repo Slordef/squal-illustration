@@ -31,7 +31,7 @@ const props = defineProps<{
   category: Category
 }>()
 
-const categoryImages = computed(() => store.getters.getImages.filter((i: Image) => props.category.images.includes(i.id)))
+const categoryImages = computed(() => store.getters.getImages?.filter((i: Image) => props.category.images.includes(i.id)) || [])
 const dropping = ref(false)
 const dragOver = () => {
   if (store.getters.getDragged) {

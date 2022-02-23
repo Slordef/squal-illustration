@@ -4,6 +4,7 @@ import DashboardView from '@/views/DashboardView.vue'
 import GalleryView from '@/views/GalleryView.vue'
 import SettingsView from '@/views/SettingsView.vue'
 import ConnectionView from '@/views/ConnectionView.vue'
+import AddAdminView from '@/views/AddAdminView.vue'
 import store from '@/store'
 
 export const routes: Array<RouteRecordRaw> = [
@@ -11,16 +12,26 @@ export const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Connection',
     component: ConnectionView,
-    beforeEnter: (from, to, next) => {
+    beforeEnter: async (from, to, next) => {
+      const token = localStorage.getItem('token')
+      if (token) await store.dispatch('connection', { token })
       if (store.state.token === undefined) return next()
       next({ name: 'Home' })
     }
   },
   {
+    path: '/add',
+    name: 'AddAdmin',
+    component: AddAdminView
+  },
+  {
     path: '/dashboard',
     name: 'Dashboard',
     component: DashboardView,
-    beforeEnter: (from, to, next) => {
+    beforeEnter: async (from, to, next) => {
+      if (store.state.token !== undefined) return next()
+      const token = localStorage.getItem('token')
+      if (token) await store.dispatch('connection', { token })
       if (store.state.token !== undefined) return next()
       next({ name: 'Connection' })
     },
@@ -41,5 +52,9 @@ export const routes: Array<RouteRecordRaw> = [
         component: SettingsView
       }
     ]
+  },
+  {
+    path: '/:pathMath(.*)*',
+    redirect: { name: 'Home' }
   }
 ]

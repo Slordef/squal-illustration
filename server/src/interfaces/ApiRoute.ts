@@ -17,7 +17,23 @@ type BodySetup = {
     Body: {
         category?: Category,
         image?: Image,
-        settings?: Settings
+        settings?: Settings,
+        token?: string,
+        connection?: {
+            login: string,
+            password: string
+        },
+        register?: {
+            login: string,
+            password: string,
+            token: string
+        },
+        admin?: {
+            login: string,
+            current: string,
+            password: string,
+            token: string
+        }
     },
     Querystring: {
         id?: string

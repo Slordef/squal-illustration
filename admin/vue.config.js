@@ -3,6 +3,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
   outputDir: '../dist/vue/',
   indexPath: 'admin.html',
+  publicPath: '/admin',
   devServer: {
     port: 8081,
     proxy: {
