@@ -13,5 +13,6 @@ export const apiRoutes: ApiRoute[] = [
     ['PUT', '/admin/update', Actions.putAdmin],
     ...routeCategories,
     ...routeSettings,
-    ...routeImages
+    ...routeImages,
+    ['GET', '/*', Actions.returnVueClient]
 ]
