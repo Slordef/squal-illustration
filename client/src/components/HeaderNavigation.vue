@@ -6,7 +6,7 @@
       <div class="nav-elem list-deroulante">
         <router-link :to="{name:'Gallery',params:{id:0}}">Galerie</router-link>
         <ul>
-          <li class="nav-elem" v-for="c in choices" :key="'c'+c.id"><router-link :to="{name:'Gallery',params:{id:c.id}}">{{c.name}}</router-link></li>
+          <li class="nav-elem" v-for="c in choices" :key="'c'+c.index"><router-link :to="{name:'Gallery',params:{id:c.index}}">{{c.name}}</router-link></li>
         </ul>
       </div>
       <div class="nav-elem"><router-link :to="{name:'Projects'}">Projets</router-link></div>
@@ -24,11 +24,12 @@
 import HeaderLogo from '@/components/HeaderLogo.vue'
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
+import { Category } from '@/intefaces/category'
 
 const store = useStore()
 
 const opened = ref(false)
-const choices = computed(() => store.getters.getGalleryChoices || [])
+const choices = computed(() => store.getters.getCategories?.filter((c: Category) => c.index !== '0') || [])
 const open = () => { opened.value = !opened.value }
 </script>
 

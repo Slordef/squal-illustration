@@ -3,8 +3,8 @@
     <div class="connection_box">
       <h1>Connexion</h1>
       <span class="connection_error" v-if="error.length">{{error}}</span>
-      <input type="text" name="login" id="login" placeholder="Login" v-model="login">
-      <input type="password" name="password" id="password" placeholder="Mot de passe" v-model="password">
+      <input type="text" name="login" id="login" placeholder="Login" v-model="login" @keyup.enter="connect">
+      <input type="password" name="password" id="password" placeholder="Mot de passe" v-model="password" @keyup.enter="connect">
       <button v-show="!connecting" @click="connect">Connexion</button>
       <span v-show="connecting">Connexion...</span>
     </div>

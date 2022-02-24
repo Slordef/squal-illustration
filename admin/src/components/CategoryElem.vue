@@ -5,7 +5,7 @@
        @dragleave.prevent="dragLeave"
        :class="{dropping}"
   >
-    <h4>{{ props.category.name }}</h4>
+    <h4><TextChangeInput :text="props.category.name" @change="changeName" /></h4>
     <div class="category_elem_images">
       <div class="category_elem_image" v-for="image in categoryImages" :key="props.category.index + '_' + image.id">
         <img :src="'/web/images/' + image.link" alt="">
@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <button v-if="props.category.index !== '0'" class="red small">Supprimer la galerie</button>
+    <button v-if="props.category.index !== '0'" class="red small" @click="del">Supprimer la galerie</button>
   </div>
 </template>
 
@@ -25,6 +25,7 @@ import { computed, defineProps, ref } from 'vue'
 import { Category } from '@/intefaces/category'
 import { useStore } from 'vuex'
 import { Image } from '@/intefaces/image'
+import TextChangeInput from '@/components/TextChangeInput.vue'
 
 const store = useStore()
 const props = defineProps<{
@@ -54,6 +55,16 @@ const delImage = (id: string) => {
   const cat = { ...props.category }
   const images = [...cat.images]
   cat.images = images.filter(i => i !== id)
+  store.dispatch('changeCategory', { category: cat })
+}
+const del = async () => {
+  if (!confirm('Supprimer cette catégorie ?')) return
+  const id = props.category.index
+  await store.dispatch('deleteCategory', { id })
+}
+const changeName = (name: string) => {
+  const cat = { ...props.category }
+  cat.name = name
   store.dispatch('changeCategory', { category: cat })
 }
 </script>

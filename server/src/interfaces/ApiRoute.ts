@@ -33,6 +33,12 @@ type BodySetup = {
             current: string,
             password: string,
             token: string
+        },
+        contact: {
+            name: string,
+            email: string,
+            message: string,
+            recaptcha: string
         }
     },
     Querystring: {

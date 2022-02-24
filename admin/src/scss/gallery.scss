@@ -4,6 +4,8 @@
 }
 .gallery_categories{
   flex: 1 1 auto;
+  overflow-y: scroll;
+  max-height: 80vh;
 }
 
 .newGallery{
@@ -16,11 +18,13 @@
 }
 
 .gallery_selector {
-  width: 450px;
+  width: 458px;
+  max-height: 80vh;
   padding: 10px 10px;
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow-y: scroll;
 
   &.dropping::before {
     content: ' ';

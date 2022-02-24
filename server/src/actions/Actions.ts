@@ -12,10 +12,13 @@ import { getSettings } from './settings/getSettings'
 import { returnConnection } from './connection/returnConnection'
 import { postAdmin } from './connection/postAdmin'
 import { putAdmin } from './connection/putAdmin'
+import { putSettings } from './settings/putSettings'
+import { returnContact } from './returnContact'
 
 export const Actions = {
     returnVueClient,
     returnVueAdmin,
+    returnContact,
 
     returnConnection,
     postAdmin,
@@ -32,4 +35,5 @@ export const Actions = {
     deleteImage,
 
     getSettings,
+    putSettings
 }

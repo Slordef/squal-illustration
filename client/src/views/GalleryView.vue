@@ -1,6 +1,6 @@
 <template>
   <section class="gallery">
-    <h1>Galerie</h1>
+    <h1>{{ category.name }}</h1>
     <div class="gallery_pictures">
       <PictureFrame v-for="(id, index) in category.images" :key="id" :index="index" :id="id" />
     </div>
@@ -11,7 +11,7 @@
 import PictureFrame from '@/components/PictureFrame.vue'
 import { computed, defineProps } from 'vue'
 import { useStore } from 'vuex'
-import { Category } from '../intefaces/category'
+import { Category } from '@/intefaces/category'
 
 const store = useStore()
 const props = defineProps<{

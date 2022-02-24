@@ -2,5 +2,15 @@
   .form-group {
     display: flex;
     flex-direction: column;
+    .error {
+      padding: 5px 10px;
+      background-color: rgba(255, 0, 0, 0.2);
+      color: darkred;
+    }
+    .success {
+      padding: 5px 10px;
+      background-color: rgba(0, 255, 0, 0.2);
+      color: #008b00;
+    }
   }
 }

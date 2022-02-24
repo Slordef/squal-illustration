@@ -3,14 +3,15 @@
     <div class="gallery_categories">
       <div>
         <h3>Image de page d'accueil</h3>
+        <HomeImageDefine />
       </div>
       <div>
         <h3>Galerie</h3>
-        <CategoryElem v-for="category in categories" :key="category.index" :category="category" />
         <div class="newGallery">
           <input type="text" name="newGallery" id="newGallery" placeholder="Titre de la nouvelle galerie" v-model="titleNewGallery">
           <button @click="fnNewGallery">Ajouter une galerie</button>
         </div>
+        <CategoryElem v-for="category in categories" :key="category.index" :category="category" />
       </div>
     </div>
     <GallerySelector />
@@ -23,6 +24,7 @@ import { Category } from '@/intefaces/category'
 import GallerySelector from '@/components/GallerySelector.vue'
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
+import HomeImageDefine from '@/components/HomeImageDefine.vue'
 
 const store = useStore()
 
@@ -38,15 +40,16 @@ const getNewIndex = () => {
     return c > n ? `${c + 1}` : `${n + 1}`
   }, '0')
 }
-const fnNewGallery = () => {
+const fnNewGallery = async () => {
   try {
     if (titleNewGallery.value.length <= 0) throw new Error('Il faut un titre à la nouvelle galerie')
     if (existsGallery(titleNewGallery.value)) throw new Error('Ce nom de galerie existe déjà')
-    categories.value.push({
+    const category = {
       index: getNewIndex(),
       name: titleNewGallery.value,
       images: []
-    })
+    }
+    await store.dispatch('addCategory', { category })
     titleNewGallery.value = ''
   } catch (e) {
     alert(e.message)
