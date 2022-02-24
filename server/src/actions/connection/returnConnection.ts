@@ -29,7 +29,7 @@ export async function returnConnection(request: ApiRequest, reply: FastifyReply)
     if (!password.length) return reply.status(401).send('Mot de passe vide')
     // vérifier le login et le password
     const admins = getDataAdmin()
-    const admin = admins.find(a => a.login === login.toLocaleLowerCase())
+    const admin = admins.find(a => a.login.toLowerCase() === login.toLocaleLowerCase())
     if (
         !admin ||
         (admin && !bcrypt.compareSync(password, admin.password))

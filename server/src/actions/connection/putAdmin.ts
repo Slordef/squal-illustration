@@ -16,7 +16,7 @@ export async function putAdmin(request: ApiRequest, reply: FastifyReply) {
     const lastLogin = payload.login
 
     try {
-        const admin = admins.find(a => a.login === lastLogin.toLowerCase())
+        const admin = admins.find(a => a.login.toLowerCase() === lastLogin.toLowerCase())
         if (!admin) return reply.status(404).send('Admin introuvable')
         if (!bcrypt.compareSync(current, admin.password)) return reply.status(401).send('Mot de passe actuel invalid')
         admin.login = login

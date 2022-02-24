@@ -5,11 +5,13 @@ import {
     RawReplyDefaultExpression,
     RawRequestDefaultExpression,
     RawServerDefault,
-    RouteHandlerMethod, RouteOptions
+    RouteHandlerMethod,
+    RouteOptions
 } from 'fastify'
 import { Category } from './category'
 import { Image } from './image'
 import { Settings } from './settings'
+import { preHandlerHookHandler } from 'fastify/types/hooks'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'PATCH' | 'OPTIONS' | HTTPMethods[]
 type URL = string
@@ -48,6 +50,7 @@ type BodySetup = {
 // eslint-disable-next-line
 export type Raw = RawRequestDefaultExpression
 type Handler = RouteHandlerMethod<RawServerDefault, Raw, RawReplyDefaultExpression, BodySetup, ContextConfigDefault>
-export type ApiRoute = [Method, URL, Handler]
+type PreHandler = preHandlerHookHandler<RawServerDefault, Raw, RawReplyDefaultExpression, BodySetup, ContextConfigDefault>
+export type ApiRoute = [Method, URL, Handler] | [Method, URL, Handler, PreHandler[]]
 export type Route = RouteOptions<RawServerDefault, Raw, RawReplyDefaultExpression, BodySetup, ContextConfigDefault>
 export type ApiRequest = FastifyRequest<BodySetup, RawServerDefault, Raw>

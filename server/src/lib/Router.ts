@@ -5,6 +5,6 @@ export class Router {
     constructor(private apiRoutes: ApiRoute[]) {}
 
     apply (server: Server) {
-        this.apiRoutes.forEach(route => server.addApiRoute({ method: route[0], url: route[1], handler: route[2] }))
+        this.apiRoutes.forEach(route => server.addApiRoute({ method: route[0], url: route[1], handler: route[2], preHandler: [...(route[3] || [])] }))
     }
 }

@@ -16,7 +16,7 @@ export async function postAdmin(request: ApiRequest, reply: FastifyReply) {
 
     login = login.toLowerCase()
     const admins = getDataAdmin()
-    if (admins.find(a => a.login === login)) return reply.status(403).send('Login déjà existant')
+    if (admins.find(a => a.login.toLowerCase() === login?.toLowerCase())) return reply.status(403).send('Login déjà existant')
 
     if (!pass.match(/(?=^.{8,}$)(?=.*\d)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)) return reply.status(403).send('Mot de passe insuffisamment complexe (8 caractères, doit contenir des chiffre, majuscules et minuscules')
 
