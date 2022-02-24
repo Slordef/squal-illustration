@@ -5,5 +5,6 @@ import * as path from 'path'
 
 export async function returnVueClient(request: FastifyRequest, reply: FastifyReply) {
     if (process.env.NODE_ENV === 'dev') return reply.redirect('http://localhost:8080')
-    return fs.readFileSync(path.resolve(process.cwd(), 'vue', 'client.html'))
+    const stream = fs.createReadStream(path.resolve(process.cwd(), 'vue', 'client.html'))
+    return reply.type('text/html').send(stream)
 }

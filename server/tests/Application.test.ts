@@ -12,11 +12,11 @@ const fakeRoutes: ApiRoute[] = [
 
 describe('Application', () => {
     describe('Construct application handlers', () => {
-        it('Base api route handle', testRouteApplication(3030, fakeRoutes, { method: 'get', path: '/' }, (response) => {
+        it('Base api route handle', testRouteApplication(3030, '127.0.0.1', fakeRoutes, { method: 'get', path: '/' }, (response) => {
             expect(response.data).toContain('Hello Jest !')
         }))
         it('Test api error handle', (done) => {
-            const application = new Application(new Server(3031))
+            const application = new Application(new Server(3031, '127.0.0.1'))
             application.setRouter(new Router(fakeRoutes))
             application.run().then(() => {
                 axios.get('http://localhost:3031/error').catch(err => {
