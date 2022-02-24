@@ -7,30 +7,48 @@ export class Mail {
 
     constructor(private contact: { name: string, email: string, message: string, recaptcha: string }) {
         this.transporter = nodemailer.createTransport({
-            host: process.env.MAIL_HOST || 'localhost',
-            port: parseInt(process.env.MAIL_PORT || '25'),
-            tls: {
-                rejectUnauthorized: false
+            // https://ethereal.email/
+            host: process.env.MAIL_HOST || 'smtp.ethereal.email',
+            port: parseInt(process.env.MAIL_PORT || '587'),
+            auth: {
+                user: process.env.MAIL_LOGIN || 'zion.pacocha45@ethereal.email',
+                pass: process.env.MAIL_PASS || 'cU7RBkwCeNGNjCUvy2'
             }
         })
         this.messageToContact = {
-            from: 'noreply@squal.ch',
+            from: 'no-reply@squal.ch',
             to: contact.email,
             subject: 'Squal - Illustration | Contact',
             text: contact.message,
-            html: `<p>${contact.message}</p>`
+            html: `
+<h1>Mail bien reçu !</h1>
+<p>Votre mail a bien été réceptionné. Voici la copie de votre message.</p>
+<h4>Votre message :</h4>
+<p>${contact.message}</p>
+`
         }
         this.message = {
-            from: contact.email,
-            to: 'slordef.vikamet@gmail.com',
+            from: 'no-reply@squal.ch',
+            to: 'pascalebernasconi@gmail.com',
             subject: 'Squal - Illustration | Contact',
             text: contact.message,
-            html: `<p>${contact.message}</p>`
+            html: `
+<h1>${contact.email}</h1>
+<p>${contact.message}</p>
+`
         }
     }
-    send () {
+    sendToContact () {
         return new Promise((resolve, reject) => {
             this.transporter.sendMail(this.messageToContact, (err, info) => {
+                if (err) return reject(err)
+                resolve(info)
+            })
+        })
+    }
+    sendToSqual () {
+        return new Promise((resolve, reject) => {
+            this.transporter.sendMail(this.message, (err, info) => {
                 if (err) return reject(err)
                 resolve(info)
             })

@@ -1,5 +1,6 @@
 import { ApiRequest } from '../interfaces/ApiRoute'
 import { FastifyReply } from 'fastify'
+import { Mail } from '../lib/Mail'
 
 export async function returnContact(request: ApiRequest, reply: FastifyReply) {
     const contact = request.body.contact
@@ -11,9 +12,24 @@ export async function returnContact(request: ApiRequest, reply: FastifyReply) {
     if (!contact.message || !contact.message.length) return reply.status(400).send({ success: false, error: 'Message invalid ou vide' })
     if (!contact.recaptcha || !contact.recaptcha.length) return reply.status(400).send({ success: false, error: 'reCAPTCHA invalide' })
 
-    // Envoyer le message par mail
-    // => Squal
-    // => contact
+    const mail = new Mail(contact)
+    const sendContact = await mail.sendToContact().then(info => {
+        console.log(info)
+        return true
+    }).catch(err => {
+        console.log(err)
+        return false
+    })
+    const send = await mail.sendToSqual().then(info => {
+        console.log(info)
+        return true
+    }).catch(err => {
+        console.log(err)
+        return false
+    })
 
-    return { success: true, error: 'Message envoyé' }
+    if (!sendContact && !send) return reply.status(500).send({ success: false, error: 'Impossible d\'envoyer les mails, contactez l\'administrateur' })
+    if (sendContact && !send) return reply.status(500).send({ success: false, error: 'Impossible d\'envoyer le mail au destinataire, contactez l\'administrateur' })
+    if (!sendContact && send) return reply.status(500).send({ success: false, error: 'Impossible d\'envoyer le mail à votre adresse mail, contactez l\'administrateur' })
+    return { success: false, error: 'Message envoyé' }
 }
