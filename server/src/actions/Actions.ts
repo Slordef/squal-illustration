@@ -14,11 +14,13 @@ import { postAdmin } from './connection/postAdmin'
 import { putAdmin } from './connection/putAdmin'
 import { putSettings } from './settings/putSettings'
 import { returnContact } from './returnContact'
+import { returnHomeImage } from './returnHomeImage'
 
 export const Actions = {
     returnVueClient,
     returnVueAdmin,
     returnContact,
+    returnHomeImage,
 
     returnConnection,
     postAdmin,
