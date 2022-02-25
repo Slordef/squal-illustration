@@ -23,6 +23,8 @@ export class Server {
         this.registerStatic(path.resolve(process.cwd(), 'vue', 'css'), '/admin/css/')
         this.registerStatic(path.resolve(process.cwd(), 'vue', 'fonts'), '/fonts/')
         this.registerStatic(path.resolve(process.cwd(), 'vue', 'img'), '/img/')
+        this.registerStatic(path.resolve(process.cwd(), 'vue', 'favicon.png'), '/favicon.png')
+        this.registerStatic(path.resolve(process.cwd(), 'vue', 'robot.txt'), '/robot.txt')
         this.registerStatic(path.resolve(process.cwd(), '..', 'assets'), '/web/')
         this.app.register(fastifyMultipart, {
             limits: { fileSize: 5 * 1024 * 1024 }
