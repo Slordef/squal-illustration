@@ -6,12 +6,16 @@
 </template>
 
 <script setup lang="ts">
-import $ from 'jquery'
-import { onDeactivated, onMounted, ref } from 'vue'
+import JQuery from 'jquery'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 
-let el: HTMLElement
+const $ = JQuery
+let el: JQuery<HTMLElement>
 const scale = ref(-1)
 const translate = ref(200)
+const style = computed(() => {
+  return `transform: translateX(${translate.value}px) scaleX(${scale.value});`
+})
 let interval: number | undefined
 const move = (pos: number, size: number, duration = 800, callback: (() => void) | undefined = undefined) => {
   $(el).animate({
@@ -20,8 +24,8 @@ const move = (pos: number, size: number, duration = 800, callback: (() => void) 
   }, {
     step (now: number, tween) {
       switch (tween.prop) {
-        case 'mo': scale.value = now - 1; break
-        case 'sc': translate.value = now; break
+        case 'sc': scale.value = now - 1; break
+        case 'mo': translate.value = now; break
       }
     },
     duration,
@@ -45,7 +49,7 @@ const turn = () => {
 const arrive = () => {
   return new Promise<void>(resolve => {
     $(el).animate({
-      move: translate.value,
+      mo: translate.value,
       sc: scale.value + 1
     }, 1)
     move(-5, -1, 800)
@@ -56,9 +60,10 @@ const arrive = () => {
 }
 
 onMounted(() => {
+  el = $('.logo_img')
   arrive().then(() => {
     interval = setInterval(() => {
-      const rand = Math.floor(Math.random() * 10)
+      const rand = Math.floor(Math.random() * 5)
       switch (rand) {
         case 1: turn(); break
       }
@@ -66,7 +71,7 @@ onMounted(() => {
     }, 10000)
   })
 })
-onDeactivated(() => {
+onUnmounted(() => {
   clearInterval(interval)
 })
 </script>

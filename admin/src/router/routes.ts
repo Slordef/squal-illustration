@@ -20,7 +20,7 @@ export const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    path: '/add',
+    path: '/addadmin',
     name: 'AddAdmin',
     component: AddAdminView
   },

@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, AxiosPromise } from 'axios'
+import axios, { AxiosPromise } from 'axios'
 
 class Api {
   get<T> (url: string): AxiosPromise<T> { return axios.get(`/api${url}`).then(r => r.data) }

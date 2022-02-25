@@ -13,7 +13,7 @@ export const actions: ActionTree<State, State> = {
     dispatch('apiSettings')
   },
   apiSettings ({ commit }) { return api.get<Settings>('/settings').then(r => { commit('SET_SETTINGS', r) }).catch(err => { console.error(err) }) },
-  apiCategories ({ commit }) { return api.get<Category[]>('/categories').then(r => { console.log(r); commit('SET_CATEGORIES', r) }).catch(err => { console.error(err) }) },
+  apiCategories ({ commit }) { return api.get<Category[]>('/categories').then(r => { commit('SET_CATEGORIES', r) }).catch(err => { console.error(err) }) },
   apiImages ({ commit }) { return api.get<Image[]>('/images').then(r => { commit('SET_IMAGES', r) }).catch(err => { console.error(err) }) },
   sendContactMessage (context, contact: ContactMessage) { return api.post<{ success: boolean, error: string }>('/contact', { contact }).catch(err => { return { success: false, error: err.response?.data?.error || err } }) }
 }
