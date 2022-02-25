@@ -13,6 +13,7 @@ export const apiRoutes: ApiRoute[] = [
     ['POST', '/admin/connection', Actions.returnConnection],
     ['POST', '/admin/add', Actions.postAdmin],
     ['PUT', '/admin/update', Actions.putAdmin],
+    ['GET', '/admin/*', Actions.returnVueAdmin],
     ...routeCategories,
     ...routeSettings,
     ...routeImages,

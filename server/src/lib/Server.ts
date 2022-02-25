@@ -6,6 +6,7 @@ import * as process from 'process'
 import { Raw, Route } from '../interfaces/ApiRoute'
 import * as http from 'http'
 import fastifyMultipart from 'fastify-multipart'
+import * as fs from 'fs'
 
 export class Server {
     private app: FastifyInstance<http.Server, Raw>
@@ -23,8 +24,8 @@ export class Server {
         this.registerStatic(path.resolve(process.cwd(), 'vue', 'css'), '/admin/css/')
         this.registerStatic(path.resolve(process.cwd(), 'vue', 'fonts'), '/fonts/')
         this.registerStatic(path.resolve(process.cwd(), 'vue', 'img'), '/img/')
-        this.registerStatic(path.resolve(process.cwd(), 'vue', 'favicon.png'), '/favicon.png')
-        this.registerStatic(path.resolve(process.cwd(), 'vue', 'robot.txt'), '/robot.txt')
+        this.app.get('/favicon.png', async (req, rep) => { return rep.type('image/png').send(fs.readFileSync(path.resolve(process.cwd(), 'vue', 'favicon.png'))) })
+        this.app.get('/robot.txt', async (req, rep) => { return rep.type('text/plain').send(fs.readFileSync(path.resolve(process.cwd(), 'vue', 'robot.txt'))) })
         this.registerStatic(path.resolve(process.cwd(), '..', 'assets'), '/web/')
         this.app.register(fastifyMultipart, {
             limits: { fileSize: 5 * 1024 * 1024 }
@@ -46,7 +47,7 @@ export class Server {
     listen () {
         return new Promise<void>(resolve => {
             this.app.listen(this.port, this.host, () => {
-                console.log(`Server listen on port : ${this.port}`)
+                console.log(`Server listen on : ${this.host}:${this.port}`)
                 resolve()
             })
         })
