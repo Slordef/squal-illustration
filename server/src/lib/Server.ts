@@ -14,7 +14,7 @@ export class Server {
     constructor(private port: number, private host: string) {
         this.app = fastify()
         this.app.register(fastifyCors, {
-            origin: (origin, callback) => {
+            origin: (origin: string, callback: (err: Error | null, allow: boolean) => void): void => {
                 callback(null, true)
             }
         })

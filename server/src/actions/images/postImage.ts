@@ -4,6 +4,7 @@ import { saveFile } from '../../files/file'
 import { randomImageID } from '../../utils/randomImageID'
 
 export async function postImage(request: ApiRequest) {
+    if (!request.files) return {}
     console.log(await request.files())
     const files = await request.files()
     const images = getDataImages()
