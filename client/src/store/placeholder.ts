@@ -1,6 +1,6 @@
-import { Image } from '../intefaces/image'
-import { Category } from '../intefaces/category'
-import { Settings } from '../intefaces/settings'
+import { Image } from '@/intefaces/image'
+import { Category } from '@/intefaces/category'
+import { Settings } from '@/intefaces/settings'
 
 export const placeholderImages: Image[] = [
   { id: '1', name: 'City', description: 'City description', link: 'city.jpg', category: 0 },
@@ -10,7 +10,7 @@ export const placeholderImages: Image[] = [
 ]
 
 export const placeholderCategories: Category[] = [
-  { index: '0', name: 'Gallery', images: ['1', '2', '3', '4'] }
+  { index: '0', name: 'Galerie', images: ['1', '2', '3', '4'] }
 ]
 
 export const placeholderSettings: Settings = {
