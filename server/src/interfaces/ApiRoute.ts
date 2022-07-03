@@ -12,6 +12,7 @@ import { Category } from './category'
 import { Image } from './image'
 import { Settings } from './settings'
 import { preHandlerHookHandler } from 'fastify/types/hooks'
+import { Multipart } from 'fastify-multipart'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'PATCH' | 'OPTIONS' | HTTPMethods[]
 type URL = string
@@ -47,10 +48,12 @@ type BodySetup = {
         id?: string
     }
 }
-// eslint-disable-next-line
+
 export type Raw = RawRequestDefaultExpression
 type Handler = RouteHandlerMethod<RawServerDefault, Raw, RawReplyDefaultExpression, BodySetup, ContextConfigDefault>
 type PreHandler = preHandlerHookHandler<RawServerDefault, Raw, RawReplyDefaultExpression, BodySetup, ContextConfigDefault>
 export type ApiRoute = [Method, URL, Handler] | [Method, URL, Handler, PreHandler[]]
 export type Route = RouteOptions<RawServerDefault, Raw, RawReplyDefaultExpression, BodySetup, ContextConfigDefault>
-export type ApiRequest = FastifyRequest<BodySetup, RawServerDefault, Raw>
+export type ApiRequest = FastifyRequest<BodySetup, RawServerDefault, Raw> & {
+    files?: () => AsyncIterableIterator<Multipart>
+}
